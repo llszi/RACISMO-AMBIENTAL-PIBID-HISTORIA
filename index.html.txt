@@ -1,0 +1,329 @@
+html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Racismo Ambiental em Porto Alegre | PIBID História</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f0f2f5;
+            color: #1e2a2f;
+            line-height: 1.5;
+        }
+
+        /* Header / Título */
+        .header {
+            background: #1a4d2c;
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 4px solid #f0b429;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header p {
+            margin-top: 0.5rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* Container do StoryMap */
+        .storymap-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* Slide individual */
+        .slide {
+            display: none;
+            padding: 2rem;
+            animation: fade 0.3s ease;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fade {
+            from { opacity: 0; transform: translateY(10px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        /* Mapa / localização (mini card) */
+        .location {
+            background: #eef2f0;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            color: #1a4d2c;
+            font-weight: 500;
+        }
+
+        .location i {
+            margin-right: 6px;
+        }
+
+        .slide h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #1e4d2c;
+            border-left: 6px solid #f0b429;
+            padding-left: 1rem;
+        }
+
+        .slide p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .slide-image {
+            margin: 1.5rem 0;
+            background: #eef0f3;
+            border-radius: 20px;
+            overflow: hidden;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #4a5b5e;
+        }
+
+        .slide-image img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
+        }
+
+        .image-placeholder {
+            background: #e2e8e6;
+            padding: 2rem;
+            text-align: center;
+            color: #3e6b4f;
+            font-style: italic;
+        }
+
+        /* Navegação */
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: #f9fafb;
+            border-top: 1px solid #ddd;
+        }
+
+        .nav-btn {
+            background: #1a4d2c;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.8rem;
+            font-size: 1rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: #0e3a21;
+            transform: scale(0.97);
+        }
+
+        .counter {
+            font-size: 0.9rem;
+            background: #e9ecef;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+        }
+
+        /* Rodapé / créditos */
+        .footer {
+            max-width: 1000px;
+            margin: 2rem auto 3rem;
+            background: #fcf9f0;
+            padding: 1.5rem 2rem;
+            border-radius: 24px;
+            border-left: 6px solid #f0b429;
+            font-size: 0.85rem;
+            color: #2d3e3b;
+        }
+
+        .footer a {
+            color: #1a4d2c;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 680px) {
+            .slide h2 {
+                font-size: 1.4rem;
+            }
+            .slide {
+                padding: 1.5rem;
+            }
+            .nav-btn {
+                padding: 0.4rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🗺️ Onde vai o lixo? <br> E quem é jogado fora junto com ele?</h1>
+    <p>Racismo Ambiental em Porto Alegre | PIBID História - EJA</p>
+</div>
+
+<div class="storymap-container">
+    <!-- SLIDES (12) baseados no conteúdo do StoryMap do Leonardo -->
+    <div class="slide active" id="slide1">
+        <div class="location">📍 Porto Alegre, Rio Grande do Sul</div>
+        <h2>Onde vai o lixo? E quem é jogado fora junto com ele?</h2>
+        <p>Toda cidade produz lixo. Mas o que acontece com ele? Quem recolhe? Onde ele vai parar? E quem são as pessoas que vivem perto desse lixo? Neste mapa, vamos descobrir como as escolhas sobre o lixo em Porto Alegre afetaram a vida de muitas pessoas, especialmente aquelas que vivem nas ruas e nas periferias. Vamos entender o que é <strong>racismo ambiental</strong> e como ele aparece bem perto da gente.</p>
+        <div class="slide-image"><div class="image-placeholder">[Imagem: Mapa de Porto Alegre com centro e periferias destacadas]</div></div>
+    </div>
+
+    <div class="slide" id="slide2">
+        <div class="location">📍 Bairros periféricos de Porto Alegre</div>
+        <h2>O que é racismo ambiental?</h2>
+        <p>Racismo ambiental acontece quando as populações mais pobres e negras sofrem mais com a poluição e com os desastres da natureza, enquanto os lugares mais ricos ficam protegidos. Em Porto Alegre, por muito tempo, o lixo foi jogado perto de vilas e comunidades negras. Quem mora nessas áreas tem mais contato com doenças, mau cheiro e enchentes. Mas isso não acontece por acaso: é fruto de decisões políticas que, no passado, afastaram o lixo do centro da cidade e o colocaram perto de quem já tinha menos poder.</p>
+        <div class="slide-image"><div class="image-placeholder">[Imagem: Rua alagada em bairro periférico (Sarandi / Humaitá)]</div></div>
+    </div>
+
+    <div class="slide" id="slide3">
+        <div class="location">📍 Centro Histórico / Margens do Guaíba (séc. XIX-XX)</div>
+        <h2>Onde ficava o lixo antigamente?</h2>
+        <p>Até o começo do século XX, o lixo de Porto Alegre era jogado perto do centro, nas margens do Guaíba. Depois, com as ideias de “higiene” e “modernidade”, os governantes resolveram afastar o lixo das áreas nobres.</p>
+        <div class="slide-image"><div class="image-placeholder">[Imagem: Foto histórica – incinerador da Azenha ou lixão da Ilha do Pavão]</div></div>
+    </div>
+
+    <div class="slide" id="slide4">
+        <div class="location">📍 Zona Norte / Ilha do Pavão</div>
+        <h2>E agora?</h2>
+        <p>Assim, os grandes depósitos de lixo — os lixões — foram parar longe do centro, em terrenos baratos, perto de rios e banhados. E, nesses lugares, já moravam muitas famílias pobres e negras.</p>
+        <div class="slide-image"><div class="image-placeholder">[Imagem: Antigo lixão da Zona Norte / Vila Dique]</div></div>
+    </div>
+
+    <div class="slide" id="slide5">
+        <div class="location">📍 Zona Norte (Vila Dique, Sarandi)</div>
+        <h2>O lixão da Zona Norte e a Vila Dique</h2>
+        <p>Um dos maiores lixões ficava na Zona Norte. Ali, centenas de pessoas, muitas delas negras e vindas do interior, trabalhavam catando plástico, papel e metal para sobreviver. Muitas famílias moravam dentro do próprio lixão, em barracos de madeira e lona. A vida era muito difícil: as crianças brincavam perto do lixo, as pessoas ficavam doentes, e o cheiro era horrível. O poder público sabia disso, mas durante décadas não ofereceu outra opção para essas famílias.</p>
+        <div class="slide-image"><div class="image-placeholder">[Imagem: Catadores no lixão – acervo DMLU, anos 1970-80]</div></div>
+    </div>
+
+    <div class="slide" id="slide6">
+        <div class="location">📍 Ilha das Flores, Porto Alegre</div>
+        <h2>O filme que chocou o mundo: Ilha das Flores</h2>
+        <p>Em 1989, um curta-metragem chamado Ilha das Flores mostrou para o mundo a realidade da Ilha das Flores, em Porto Alegre. Ali, depois que os porcos comiam os restos de comida, as crianças e os moradores de rua catavam o que sobrava. O filme fez uma pergunta forte: “Será que os humanos têm o telencéfalo desenvolvido e o polegar opositor só para isso?” Ele mostrou que, na sociedade do descarte, até as pessoas podem ser tratadas como lixo.</p>
+        <div class="slide-image"><div class="image-placeholder">[Imagem: Cena do curta Ilha das Flores (1989)]</div></div>
+    </div>
+
+    <div class="slide" id="slide7">
+        <div class="location">📍 Unidades de Triagem – Restinga, Lomba do Pinheiro</div>
+        <h2>Catadores e catadoras: os invisíveis da cidade</h2>
+        <p>Muitos catadores viviam no lixão sem nenhum apoio. Nos anos 1990, a prefeitura criou as Unidades de Triagem e ajudou os catadores a se organizarem em cooperativas. Agora, em vez de revirar o lixão, eles trabalham em galpões limpos, com luva e equipamento de proteção. Essa mudança deu mais dignidade e renda a muitas famílias. Mas os catadores ainda sofrem preconceito: algumas pessoas ainda acham que trabalhar com lixo é coisa de “gente suja” ou “pobre”.</p>
+        <div class="slide-image"><div class="image-placeholder">[Imagem: Catadores em galpão de triagem – Restinga, anos 1990]</div></div>
+    </div>
+
+    <div class="slide" id="slide8">
+        <div class="location">📍 Centro Histórico de Porto Alegre (Rua da Praia)</div>
+        <h2>Moradores de rua e o lixo da cidade</h2>
+        <p>Os moradores de rua também vivem essa realidade. No centro, eles são os que mais sofrem com a sujeira, porque muitas vezes usam o lixo para se alimentar ou para conseguir materiais para vender. Ao mesmo tempo, eles são acusados de “sujar” a cidade. Mas será que é culpa deles? A cidade não oferece banheiros públicos suficientes, nem lugares para guardar seus pertences. Sem políticas públicas, o estigma recai sobre quem já está em situação de vulnerabilidade.</p>
+        <div class="slide-image"><div class="image-placeholder">[Imagem: Varrição manual no centro de Porto Alegre – DMLU]</div></div>
+    </div>
+
+    <div class="slide" id="slide9">
+        <div class="location">📍 Bairros Sarandi, Humaitá, Navegantes</div>
+        <h2>A água também conta: enchentes e racismo ambiental</h2>
+        <p>Nas grandes enchentes de 2023 e 2024, quem mais perdeu a casa foram as pessoas que moram perto dos arroios, nas vilas e nas áreas mais baixas da cidade. Muitos desses lugares são os mesmos onde antes ficavam os lixões. O lixo entope os bueiros e faz a água subir mais rápido. Mas os bairros ricos, como Moinhos de Vento e Bela Vista, têm mais proteção e quase não alagam. Isso é racismo ambiental: a população negra e pobre é a que mais sofre com as consequências do lixo e da falta de planejamento.</p>
+        <div class="slide-image"><div class="image-placeholder">[Imagem: Enchente na Zona Norte (2024) – Arquivo]</div></div>
+    </div>
+
+    <div class="slide" id="slide10">
+        <div class="location">📍 Bairro Bonfim (primeira coleta seletiva, 1990)</div>
+        <h2>Políticas públicas que ajudaram</h2>
+        <p>Nos anos 1990, Porto Alegre se tornou conhecida pela coleta seletiva e pelo Orçamento Participativo, um jeito de a população decidir onde aplicar o dinheiro público. Com essas ideias, foram criados galpões de reciclagem, programas de educação ambiental e campanhas de conscientização. Isso ajudou a diminuir os lixões e a incluir os catadores. Mas será que essas políticas também olharam para os moradores de rua?</p>
+        <div class="slide-image"><div class="image-placeholder">[Imagem: Coleta seletiva / Mascote Urbano – DMLU]</div></div>
+    </div>
+
+    <div class="slide" id="slide11">
+        <div class="location">📍 Centro de Porto Alegre</div>
+        <h2>E os moradores de rua, onde entram?</h2>
+        <p>Muitos moradores de rua também coletam recicláveis, mas não estão nas cooperativas. Eles vendem o que acham para os atravessadores e ganham bem menos. A prefeitura tem programas de acolhimento e de assistência social, mas ainda falta uma política que una o cuidado com o meio ambiente e o cuidado com as pessoas. Enquanto isso, muitos moradores de rua continuam sendo vistos como parte da “sujeira” da cidade, e não como cidadãos que precisam de ajuda.</p>
+        <div class="slide-image"><div class="image-placeholder">[Imagem: Morador de rua com carrinho de recicláveis]</div></div>
+    </div>
+
+    <div class="slide" id="slide12">
+        <div class="location">📍 Antigos lixões (Zona Norte, Ilha do Pavão)</div>
+        <h2>A luta pela memória e por justiça</h2>
+        <p>Hoje, os antigos lixões estão fechados ou transformados em parques. Mas as marcas ficaram nas pessoas: doenças, falta de estudo, pobreza. Organizações como o Quilombo dos Machado e o Movimento Nacional dos Catadores lutam para que essas histórias não sejam esquecidas. Eles mostram que o lixo não é só um problema técnico — ele é uma questão de direitos humanos.</p>
+        <div class="slide-image"><div class="image-placeholder">[Imagem: Memorial / atividade de educação ambiental no antigo lixão]</div></div>
+    </div>
+
+    <!-- Navegação -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn">◀ Anterior</button>
+        <span class="counter" id="slideCounter">1 / 12</span>
+        <button class="nav-btn" id="nextBtn">Próximo ▶</button>
+    </div>
+</div>
+
+<!-- Rodapé com créditos ao doutorado -->
+<div class="footer">
+    <p><strong>📚 Base de pesquisa e referência</strong><br>
+    Este trabalho foi inspirado na tese de doutorado <strong>“Os Caminhos do Lixo: Porto Alegre e as Políticas Públicas para Resíduos (1975-2004)”</strong>, de <strong>Esther Mayara Zamboni Rossi</strong>, defendida no Programa de Pós-Graduação em História da Universidade Federal de Santa Catarina (UFSC) em 2023, sob orientação da Profa. Dra. Eunice Sueli Nodari. Agradecimentos ao acervo do DMLU, ao Arquivo Histórico de Porto Alegre e à Hemeroteca Digital Brasileira.</p>
+    <p style="margin-top: 0.5rem;">📌 <strong>Projeto PIBID – História (UFRGS)</strong> | Professores e estudantes em formação inicial | EJA / Ensino Fundamental<br> 
+    A partir de fontes históricas, discutimos racismo ambiental, gestão de resíduos e direitos humanos na cidade de Porto Alegre.</p>
+    <p style="margin-top: 0.5rem;">🔗 <strong>Fontes complementares:</strong> <a href="https://repositorio.ufsc.br/handle/123456789/252450" target="_blank">Repositório UFSC</a> | <a href="https://memoria.bn.br/hemeroteca" target="_blank">Hemeroteca Digital BN</a></p>
+</div>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    function updateSlides() {
+        slides.forEach((slide, index) => {
+            slide.classList.toggle('active', index === currentSlide);
+        });
+        document.getElementById('slideCounter').innerText = `${currentSlide+1} / ${totalSlides}`;
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+            updateSlides();
+        }
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        if (currentSlide > 0) {
+            currentSlide--;
+            updateSlides();
+        }
+    });
+</script>
+
+</body>
+</html>
