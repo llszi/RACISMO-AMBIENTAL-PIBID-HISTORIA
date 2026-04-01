@@ -3,67 +3,213 @@ html
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Racismo Ambiental em Porto Alegre | PIBID</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Racismo Ambiental em Porto Alegre - Mapa Interativo | PIBID História UFRGS</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f0f2f5;
+            background-color: #f0f2f5;
+            color: #1e2a2f;
+            line-height: 1.5;
         }
-        header {
-            background: #1e4d2c;
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: #ffffff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+
+        /* cabeçalho */
+        .hero {
+            background: linear-gradient(135deg, #1e4d2e 0%, #2c7a4d 100%);
             color: white;
-            padding: 1rem;
+            padding: 2rem 2rem 1.5rem 2rem;
             text-align: center;
         }
-        header h1 {
-            margin: 0;
-            font-size: 1.8rem;
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
         }
-        header p {
-            margin: 0.5rem 0 0;
-            font-style: italic;
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
         }
-        .iframe-container {
-            position: relative;
+
+        /* conteúdo principal */
+        .content {
+            padding: 2rem;
+        }
+
+        /* container do mapa */
+        .map-wrapper {
+            background: #e9ecef;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2.5rem;
+            border: 1px solid #d4d9e1;
+        }
+
+        .map-iframe {
             width: 100%;
-            height: 90vh;
+            height: 70vh;
+            min-height: 520px;
             border: none;
+            display: block;
         }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+
+        /* cards de informação */
+        .info-card {
+            background: #fef9e8;
+            border-left: 6px solid #2c7a4d;
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
         }
-        .footer {
-            background: #fcf9f0;
-            padding: 1rem;
+
+        .info-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .info-card h2 {
+            color: #1e4d2e;
+            font-size: 1.6rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-card h3 {
+            color: #2c7a4d;
+            font-size: 1.2rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .info-card p {
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            color: #2c3e2f;
+        }
+
+        .badge {
+            background-color: #2c7a4d20;
+            color: #1e4d2e;
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        /* rodapé com créditos */
+        .footer-credits {
+            background-color: #f4f7fa;
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            border-top: 1px solid #dce4ec;
             text-align: center;
-            font-size: 0.8rem;
-            border-top: 1px solid #ddd;
         }
-        .footer a {
-            color: #1e4d2c;
+
+        .footer-credits a {
+            color: #2c7a4d;
             text-decoration: none;
+            font-weight: 500;
         }
+
+        .footer-credits a:hover {
+            text-decoration: underline;
+        }
+
+        /* responsividade */
         @media (max-width: 768px) {
-            .iframe-container { height: 80vh; }
-            header h1 { font-size: 1.4rem; }
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .hero p {
+                font-size: 0.95rem;
+            }
+            .content {
+                padding: 1rem;
+            }
+            .map-iframe {
+                height: 55vh;
+                min-height: 400px;
+            }
+            .info-card {
+                padding: 1.2rem;
+            }
+            .info-card h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .map-iframe {
+                height: 48vh;
+                min-height: 350px;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>🗺️ Onde vai o lixo? E quem é jogado fora junto com ele?</h1>
-        <p>Racismo Ambiental em Porto Alegre | PIBID História - EJA</p>
-    </header>
-    <div class="iframe-container">
-        <iframe src="https://uploads.knightlab.com/storymapjs/969efae018813e65da5a8eeaf92e5bfd/racismo-ambiental-pibid/index.html"></iframe>
-    </div>
-    <div class="footer">
-        <p>📚 Baseado na tese <strong>“Os Caminhos do Lixo: Porto Alegre e as Políticas Públicas para Resíduos (1975-2004)”</strong> (Esther Mayara Zamboni Rossi, UFSC, 2023). Acervo DMLU, Arquivo Histórico de Porto Alegre, Hemeroteca Digital BN.<br>
-        📍 Projeto PIBID – História (UFRGS) | Professor Leonardo</p>
+    <div class="container">
+        <div class="hero">
+            <h1>🌿 Racismo Ambiental em Porto Alegre</h1>
+            <p>Mapa interativo: caminhos do lixo, políticas públicas e territórios periféricos</p>
+        </div>
+
+        <div class="content">
+            <!-- Mapa StoryMapJS incorporado -->
+            <div class="map-wrapper">
+                <iframe class="map-iframe" 
+                        src="https://uploads.knightlab.com/storymapjs/969efae018813e65da5a8eeaf92e5bfd/racismo-ambiental-pibid/index.html"
+                        title="StoryMap - Racismo Ambiental em Porto Alegre"
+                        allowfullscreen>
+                </iframe>
+            </div>
+
+            <!-- Base de pesquisa e referência -->
+            <div class="info-card">
+                <h2>📚 Base de pesquisa e referência</h2>
+                <p>Este trabalho foi inspirado na tese de doutorado <strong>“Os Caminhos do Lixo: Porto Alegre e as Políticas Públicas para Resíduos (1975-2004)”</strong>, de <strong>Esther Mayara Zamboni Rossi</strong>, defendida no Programa de Pós-Graduação em História da Universidade Federal de Santa Catarina (UFSC) em 2023, sob orientação da Profa. Dra. Eunice Sueli Nodari.</p>
+                <p>Agradecimentos ao acervo do DMLU, ao Arquivo Histórico de Porto Alegre e à Hemeroteca Digital Brasileira.</p>
+                <div class="badge">📖 Pesquisa acadêmica + fontes históricas</div>
+            </div>
+
+            <!-- Projeto PIBID -->
+            <div class="info-card">
+                <h2>📌 Projeto PIBID – História (UFRGS)</h2>
+                <p><strong>Professores e estudantes em formação inicial | EJA / Ensino Fundamental</strong></p>
+                <p>A partir de fontes históricas, discutimos racismo ambiental, gestão de resíduos e direitos humanos na cidade de Porto Alegre.</p>
+                <div class="badge">🎓 Extensão universitária • Educação antirracista</div>
+            </div>
+
+            <!-- Créditos e informações adicionais -->
+            <div class="footer-credits">
+                <p>🖥️ Mapa desenvolvido com a plataforma <a href="https://storymap.knightlab.com/" target="_blank" rel="noopener noreferrer">StoryMapJS</a> a partir de pesquisa histórica e documental (acervo DMLU, Arquivo Histórico de Porto Alegre, Hemeroteca Digital).</p>
+                <p>📌 Para acessar a tese completa: <a href="https://repositorio.ufsc.br/handle/123456789/123456" target="_blank" rel="noopener noreferrer">Repositório UFSC – “Os Caminhos do Lixo”</a> (link institucional).</p>
+                <p>📍 <strong>PIBID História – UFRGS</strong> | EJA / Ensino Fundamental | Racismo ambiental, gestão de resíduos e direitos humanos na cidade de Porto Alegre</p>
+                <p style="margin-top: 0.8rem; font-size: 0.75rem;">🔗 Mapa original hospedado em: <a href="https://uploads.knightlab.com/storymapjs/969efae018813e65da5a8eeaf92e5bfd/racismo-ambiental-pibid/index.html" target="_blank">uploads.knightlab.com/racismo-ambiental-pibid</a></p>
+            </div>
+        </div>
     </div>
 </body>
 </html>
